@@ -34,7 +34,7 @@ class Engine
 
     public: // Normalement priv�
         bool MouseL=false, MouseR=false, Echap=false, MouseRPressed = false;
-        bool Left=false, Right=false, Up=false, Space=false, Down=false;
+        bool Left=false, Right=false, Up=false, Space=false, Down=false, Z=false, Q=false, D=false;
         bool SpacePressed=false, UpPressed=false, DownPressed=false, LeftPressed=false, RightPressed=false;
         sf::RenderWindow m_window;
         sf::Time TimePerFrame;

@@ -81,6 +81,10 @@ void Engine::processEvents(void)
     {
         switch(event.type)
         {
+            case sf::Event::Closed:
+                m_window.close();
+                break;
+
             case sf::Event::KeyPressed:
                 handleKeyInput(event.key.code, true);
                 break;
@@ -123,6 +127,18 @@ void Engine::handleKeyInput(sf::Keyboard::Key key, bool isPressed)
         this-> Space = isPressed;
         if(!isPressed) { this->SpacePressed=false; }
     }
+    if(key == sf::Keyboard::Z) {
+        this-> Z = isPressed;
+        if(!isPressed) { this->DownPressed=false; }
+    }
+    if(key == sf::Keyboard::Q) {
+        this-> Q = isPressed;
+        if(!isPressed) { this->UpPressed=false; }
+    }
+    if(key == sf::Keyboard::D) {
+        this-> D = isPressed;
+        if(!isPressed) { this->SpacePressed=false; }
+    }
 }
 
 void Engine::handleMouseInput(sf::Mouse::Button mouse, bool isPressed)
@@ -145,9 +161,9 @@ void Engine::update(sf::Time deltaTime)
         if(Echap) { m_window.close(); }
         if(MouseL) { }
         if(MouseR && !MouseRPressed) {}
-        if(Left) { j1.rotationL(deltaTime); }
-        if(Right) { j1.rotationR(deltaTime); }
-        if(Up) { j1.move(deltaTime); }
+        if(Left || Q) { j1.rotationL(deltaTime); }
+        if(Right || D) { j1.rotationR(deltaTime); }
+        if(Up || Z) { j1.move(deltaTime); }
         if(Down) {  }
         if(Space && !SpacePressed) { 
             l_balle.push_back(Munition(j1.forme[1].position.x,j1.forme[1].position.y, -j1.angle)); 
