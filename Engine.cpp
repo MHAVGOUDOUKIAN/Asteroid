@@ -45,6 +45,7 @@ void Engine::reset()
     l_asteroid.clear();
     l_balle.clear();
 
+    m_textGame.setFillColor(sf::Color::Red);
     m_textGame.setString("GAME OVER");
 
     l_asteroid.push_back({randomf(100, SIZE_SCREEN_W-100), 150, randomf(70, 100)});
@@ -223,6 +224,7 @@ void Engine::update(sf::Time deltaTime)
 
     if(l_asteroid.empty())
     {
+            m_textGame.setFillColor(sf::Color::Green);
             m_textGame.setString("VICTOIRE !");
             j1.alive = false;
     }
