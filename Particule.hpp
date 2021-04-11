@@ -1,3 +1,29 @@
+/** Auteur: Maxime HAVGOUDOUKIAN
+ *
+ *  Nom Projet: Asteroid
+ *
+ *  Date de création: 09/04/2021
+ *  Dernière modification: 12/04/2021
+ *
+ *  Dans ce fichier se trouve toutes les particules que le générateur va pouvoir générer
+ *  Pour ce faire il suffit de choisir la particule que va devoir utiliser le générateur
+ *  lors de sa déclaration grâce à la généricité : ParticuleGenerateur< ma_Particule > mon_Generateur;
+ * 
+ *  Chaque type de particule est en fait une instance d'une classe qui: 
+ *      - dérive d'une méthode virtuelle pure 'Particule'
+ *      - décrit les caractéristiques et le comportement des particules
+ * 
+ *  La construction actuelle du générateur ne permet pas aux particules d'interagir avec l'environnement
+ *  extérieur (autres objets, souris, écran, etc..); elles restent fidèles au comportement de base décrit
+ *  dans leur classe d'origine.
+ * 
+ *  Pour créer une nouvelle classe de particules, il faut au minimum la faire dériver de 'Particule' et redéfinir
+ *  les cinq méthodes virtuelles pures de celle-ci en fonction du comportement de la particule : 
+ *      - update(), launch(), draw(), processPhysics() et processCollision().
+ *  Vous pouvez ensuite directement utiliser cette nouvelle classe de particule dans le générateur;
+ * 
+**/
+
 #ifndef PARTICULE_HPP_INCLUDED
 #define PARTICULE_HPP_INCLUDED
 

@@ -1,10 +1,10 @@
 /** Auteur: Maxime HAVGOUDOUKIAN
- *  
- *  Nom Projet: Asteroid 
- * 
+ *
+ *  Nom Projet: Asteroid
+ *
  *  Date de création: 09/04/2021
- *  Dernière modification: 09/04/2021
- *  
+ *  Dernière modification: 12/04/2021
+ *
 **/
 
 #include <iostream>
@@ -13,13 +13,17 @@
 
 Engine::Engine(): m_window(sf::VideoMode(SIZE_SCREEN_W,SIZE_SCREEN_H), "Ma fenetre", FLAGS), j1(300,300)
 {
+    // Pour camoufler l'ecran blanc au lancement dû au temps de chargement des textures, sons, etc..
+    m_window.clear();
+    m_window.display();
+
     srand(std::chrono::steady_clock::now().time_since_epoch().count());
 
     if(!Buff1.loadFromFile("shoot.wav"))
     {
         std::cout << "Fichier son introuvable" << std::endl;
     }
-    
+
     if(!Buff2.loadFromFile("explosion.wav"))
     {
         std::cout << "Fichier son introuvable" << std::endl;
@@ -66,6 +70,8 @@ Engine::Engine(): m_window(sf::VideoMode(SIZE_SCREEN_W,SIZE_SCREEN_H), "Ma fenet
     m_textScore.setStyle(sf::Text::Regular);
     m_textScore.setString(std::to_string(score));
     m_textScore.setPosition(10,10);
+
+
 }
 
 void Engine::reset()
@@ -205,22 +211,22 @@ void Engine::update(sf::Time deltaTime)
         if(MouseR && !MouseRPressed) {}
         if(Left || Q) { j1.rotationL(deltaTime); }
         if(Right || D) { j1.rotationR(deltaTime); }
-        if(Up || Z) { 
+        if(Up || Z) {
             j1.move(deltaTime);
-            
-            if(s_fusee.getStatus() != sf::SoundSource::Playing) { 
+
+            if(s_fusee.getStatus() != sf::SoundSource::Playing) {
                 s_fusee.play();
                 s_fusee.setLoop(true);
             }
-        } else { s_fusee.stop(); } 
+        } else { s_fusee.stop(); }
         if(Down) {  }
-        if(Space && !SpacePressed) { 
+        if(Space && !SpacePressed) {
             l_balle.push_back(Munition(j1.forme[1].position.x,j1.forme[1].position.y, -j1.angle));
             s_shoot.play();
             SpacePressed=true;
         }
-        if(M  && !MPressed) { 
-            mute = !mute; 
+        if(M  && !MPressed) {
+            mute = !mute;
             MPressed=true;
 
             if(mute) {
@@ -233,7 +239,7 @@ void Engine::update(sf::Time deltaTime)
                 s_fusee.setVolume(65);
             }
         }
-        if(P && !PPressed) { 
+        if(P && !PPressed) {
             PPressed=true;
             sc++;
             if(sc > 3) { sc = 0; }
@@ -243,12 +249,12 @@ void Engine::update(sf::Time deltaTime)
     {
         s_fusee.stop();
         if(Echap) { m_window.close(); }
-        if(Space && !SpacePressed) { 
+        if(Space && !SpacePressed) {
             reset();
             SpacePressed=true;
         }
-        if(M  && !MPressed) { 
-            mute = !mute; 
+        if(M  && !MPressed) {
+            mute = !mute;
             MPressed=true;
 
             if(mute) {
@@ -342,13 +348,13 @@ void Engine::update(sf::Time deltaTime)
 void Engine::render(void)
 {
     m_window.clear();
-    
+
     for(size_t i=0; i < l_asteroid.size(); i++) { l_asteroid[i].draw(m_window); }
     for(size_t i=0; i < l_balle.size(); i++) { l_balle[i].draw(m_window); }
-    
+
     if(sc != 1 && sc != 3) { genPartGlobl.draw(m_window); }
     if(sc != 2 && sc != 3) { m_window.draw(m_textScore); }
-    
+
     if(j1.alive) {j1.draw(m_window);}
     else{m_window.draw(m_textGame);}
 
@@ -357,7 +363,7 @@ void Engine::render(void)
 
 bool Engine::overlapping(sf::VertexArray &j1, sf::VertexArray &j2)
 {
-    
+
     for(size_t i=0; i < j1.getVertexCount(); i++) {
         int j = (i+1)%j1.getVertexCount();
         sf::Vector2f axeProjection = sf::Vector2f(-(j1[j].position.y - j1[i].position.y) ,j1[j].position.x - j1[i].position.x);

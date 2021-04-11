@@ -3,7 +3,10 @@
  *  Nom Projet: Asteroid 
  * 
  *  Date de création: 09/04/2021
- *  Dernière modification: 09/04/2021
+ *  Dernière modification: 12/04/2021
+ * 
+ *  Contient l'ensemble des méthodes diverses indispensables pour la génération aléatoire
+ *  et la manipulation des VertexArray et des formes (notamment rotationPts() pour la rotation d'un objet)
  *  
 **/
 
@@ -16,7 +19,7 @@
 #include "CONSTANTES.hpp"
 
 /**
- *  @brief Renvoie un flotant pseudo-aléatoirement
+ *  @brief Renvoie un flotant pseudo-aléatoirement.
  * 
  *  @param Min: Borne inférieur de la sélection
  *  @param Max: Borne supérieur de la sélection
@@ -30,7 +33,7 @@ inline float randomf(float Min, float Max) // Renvoie un nombre entier dans l'in
 }
 
 /**
- *  @brief Renvoie un entier pseudo-aléatoirement
+ *  @brief Renvoie un entier pseudo-aléatoirement.
  * 
  *  @param Min: Borne inférieur de la sélection
  *  @param Max: Borne supérieur de la sélection
@@ -44,7 +47,7 @@ inline int randomi(int Min, int Max) // Renvoie un nombre entier dans l'interval
 }
 
 /**
- *  @brief Renvoie l'angle entre l'axe formé avec les deux points et l'axe horizontal
+ *  @brief Renvoie l'angle entre l'axe formé avec les deux points et l'axe horizontal.
  * 
  *  @param origine: Point d'origine du vecteur de l'axe
  *  @param point: Point directeur du vecteur de l'axe
@@ -67,7 +70,7 @@ inline float findAngle(const sf::Vector2f origine, const sf::Vector2f point)
 }
 
 /**
- *  @brief Effectue la rotation d'un point autour d'un centre
+ *  @brief Effectue la rotation d'un point autour d'un centre dans le sens trigonométrique.
  * 
  *  @param angleSupp: Angle de rotation souhaité (en Radian)
  *  @param origine: Point d'origine

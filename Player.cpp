@@ -3,7 +3,7 @@
  *  Nom Projet: Asteroid
  *
  *  Date de création: 09/04/2021
- *  Dernière modification: 09/04/2021
+ *  Dernière modification: 12/04/2021
  *
 **/
 
@@ -44,7 +44,6 @@ void Player::move(sf::Time deltaTime) //
     genPart.start();
     vit.x += cos(angle) * acc * deltaTime.asSeconds();
     vit.y += -sin(angle) * acc * deltaTime.asSeconds();
-    
 }
 
 void Player::update(sf::Time deltaTime)

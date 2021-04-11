@@ -1,3 +1,12 @@
+/** Auteur: Maxime HAVGOUDOUKIAN
+ *
+ *  Nom Projet: Asteroid
+ *
+ *  Date de création: 09/04/2021
+ *  Dernière modification: 12/04/2021
+ *
+**/
+
 #include "Particule.hpp"
 #include <cmath>
 #include <iostream>

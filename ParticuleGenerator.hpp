@@ -1,3 +1,23 @@
+/** Auteur: Maxime HAVGOUDOUKIAN
+ *
+ *  Nom Projet: Asteroid
+ *
+ *  Date de création: 09/04/2021
+ *  Dernière modification: 12/04/2021
+ *
+ *  C'est la classe principale permettant de générer des particules à l'écran.
+ *  C'est une version qui peut encore être optimisée.
+ * 
+ *  Créer et utiliser un générateur de particules dans un programme:
+ *      1 - Déclarer le générateur puis l'initialiser avec une position
+ *      2 - Appeler la méthode update() à chaque frame pour mettre à jour le générateur
+ *      3 - Appeler la méthode draw() pour afficher les particules que contient le générateur
+ * 
+ *  NB: Le générateur doit se trouver dans une boucle pour fonctionner correctement; il prend en compte le temps écoulé
+ *  entre chaque frame
+ *
+**/
+
 #ifndef PARTICULEGENERATOR_HPP_INCLUDED
 #define PARTICULEGENERATOR_HPP_INCLUDED
 

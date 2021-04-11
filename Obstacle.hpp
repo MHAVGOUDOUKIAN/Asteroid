@@ -3,8 +3,11 @@
  *  Nom Projet: Asteroid 
  * 
  *  Date de création: 09/04/2021
- *  Dernière modification: 09/04/2021
+ *  Dernière modification: 12/04/2021
  *  
+ *  Les obstacles ont une vitesse de translation et une vitesse de rotation fixe qui dépendent de leur rayon;
+ *  Plus le rayon est important, moins les vitesses le sont; 
+ * 
 **/
 
 #ifndef OBSTACLE_HPP_INCLUDED

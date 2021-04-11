@@ -9,3 +9,4 @@ Jeu des astéroïdes codé en c++
     P: Changer l'affichage des scores
 
 Auteur: Maxime HAVGOUDOUKIAN
+
