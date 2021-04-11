@@ -73,10 +73,10 @@ void Obstacle::update(sf::Time deltaTime)
         pos += dir * vit * deltaTime.asSeconds();
         angle += vitAngle * PI/180 * deltaTime.asSeconds();
 
-        if(pos.x < 0 - rayonMax) {pos.x = SIZE_SCREEN_W - 1;}
+        if(pos.x < 0 - rayonMax) {pos.x = SIZE_SCREEN_W + rayonMax;}
         if(pos.x > SIZE_SCREEN_W + rayonMax) {pos.x = 1 - rayonMax;}
 
-        if(pos.y < 0 - rayonMax) {pos.y = SIZE_SCREEN_H - 1;}
+        if(pos.y < 0 - rayonMax) {pos.y = SIZE_SCREEN_H + rayonMax;}
         if(pos.y > SIZE_SCREEN_H + rayonMax) {pos.y = 1 - rayonMax;}
     }
     render();
