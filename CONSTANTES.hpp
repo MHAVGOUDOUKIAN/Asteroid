@@ -10,8 +10,12 @@
 #ifndef CONSTANTES_HPP_INCLUDED
 #define CONSTANTES_HPP_INCLUDED
 
-#define SIZE_SCREEN_W 800
-#define SIZE_SCREEN_H 800
+#define SIZE_SCREEN_W 700
+#define SIZE_SCREEN_H 700
+
+#define FPS 120.f
+
+#define FLAGS sf::Style::Close
 
 #define PI 3.14159
 

@@ -36,13 +36,10 @@ class ParticuleGenerator
         float getParticulePerSecond(void) { return particulePerSecond; }
         void setLifeTimeParticule(const float value) { lifeTimeParticule = value; }
         float getLifeTimeParticule(void) { return lifeTimeParticule; }
-        void setTypeParticule(const short value) { typeParticule = value;}
-        short getTypeParticule(void) { return typeParticule; }
 
     private:
         std::vector<type*> lParticules;
         sf::Vector2f pos;
-        short typeParticule;
         bool working, EnableDuration; // Indique que le générateur est en cours d'utilisation / Indique que le générateur à une durée de fonctionnement
         float duration, lifeTime; // Durée de vie du générateur
         float particulePerSecond; // Pas de limitation pour générer des particules mais attention aux performances
@@ -51,11 +48,11 @@ class ParticuleGenerator
 };
 
 template <typename type>
-ParticuleGenerator<type>::ParticuleGenerator() : pos(sf::Vector2f(0,0)), typeParticule(0), working(false), EnableDuration(false), duration(2.f),
+ParticuleGenerator<type>::ParticuleGenerator() : pos(sf::Vector2f(0,0)), working(false), EnableDuration(false), duration(2.f),
 lifeTime(0), particulePerSecond(300), timeLastParticuleAdded(0), lifeTimeParticule(0.5f) {}
 
 template <typename type>
-ParticuleGenerator<type>::ParticuleGenerator(const float X, const float Y): pos(sf::Vector2f(X,Y)), typeParticule(0), working(false), EnableDuration(false),
+ParticuleGenerator<type>::ParticuleGenerator(const float X, const float Y): pos(sf::Vector2f(X,Y)), working(false), EnableDuration(false),
 duration(2.f), lifeTime(0), particulePerSecond(300), timeLastParticuleAdded(0), lifeTimeParticule(0.5f) {}
 
 template <typename type>

@@ -11,10 +11,12 @@
 #define ENGINE_HPP_INCLUDED
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "Player.hpp"
 #include "Obstacle.hpp"
 #include "Munition.hpp"
 #include <vector>
+#include "ParticuleGenerator.hpp"
 
 class Engine
 {
@@ -32,17 +34,34 @@ class Engine
 
         bool overlapping(sf::VertexArray &j1, sf::VertexArray &j2);
 
-    public: // Normalement priv�
+    public: // Normalement privé
         bool MouseL=false, MouseR=false, Echap=false, MouseRPressed = false;
-        bool Left=false, Right=false, Up=false, Space=false, Down=false, Z=false, Q=false, D=false;
-        bool SpacePressed=false, UpPressed=false, DownPressed=false, LeftPressed=false, RightPressed=false;
+        bool Left=false, Right=false, Up=false, Space=false, Down=false, Z=false, Q=false, D=false, M=false, P=false;
+        bool SpacePressed=false, UpPressed=false, DownPressed=false, LeftPressed=false, RightPressed=false, MPressed=false, PPressed=false;
+        
         sf::RenderWindow m_window;
         sf::Time TimePerFrame;
         Player j1;
+        short sc=0;
+        int score=0;
         std::vector<Obstacle> l_asteroid;
         std::vector<Munition> l_balle;
+        
         sf::Font m_fontGame;
         sf::Text m_textGame;
+        sf::Font m_fontScore;
+        sf::Text m_textScore;
+
+        ParticuleGenerator<Particule_Score> genPartGlobl;
+        
+        sf::SoundBuffer Buff1;
+        sf::SoundBuffer Buff2;
+        sf::SoundBuffer Buff3;
+        sf::Sound s_shoot;
+        sf::Sound s_explosion;
+        sf::Sound s_fusee;
+        bool musicOn = false;
+        bool mute=false;
 };
 
 #endif // ENGINE_HPP_INCLUDED

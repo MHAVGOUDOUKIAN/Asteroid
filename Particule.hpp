@@ -36,29 +36,6 @@ class Particule // Attributs et méthodes de base d'une particule
 };
 
     //////////////////////////////////////////////////////////////
-    ////////////// Particule Dot ////////////////////////////////
-    //////////////////////////////////////////////////////////////
-
-class Particule_Dot : public Particule
-{
-    public:
-        Particule_Dot();
-        Particule_Dot(const float X,const float Y);
-        Particule_Dot(const float X,const float Y, const float dureeVie);
-        virtual ~Particule_Dot();
-
-        virtual void update(const sf::Time& deltaTime);
-        virtual void launch(const float X, const float Y, const float vit_X, const float vit_Y);
-        virtual void draw(sf::RenderWindow& window);
-        virtual void processPhysics(void);
-        virtual void processCollision(void) {} // Pas de collisions pour cette particule
-
-    protected:
-        float m_taille;
-        sf::Color m_color;
-};
-
-    //////////////////////////////////////////////////////////////
     ////////////// Particule Trail ///////////////////////////////
     //////////////////////////////////////////////////////////////
 
@@ -79,6 +56,32 @@ class Particule_Trail : public Particule
     protected:
         float m_taille;
         sf::Color m_color;
+};
+
+    //////////////////////////////////////////////////////////////
+    ////////////// Particule Score ///////////////////////////////
+    //////////////////////////////////////////////////////////////
+
+class Particule_Score : public Particule
+{
+    public:
+        Particule_Score();
+        Particule_Score(const float X,const float Y);
+        Particule_Score(const float X,const float Y, const float dureeVie);
+        virtual ~Particule_Score();
+
+        virtual void update(const sf::Time& deltaTime);
+        virtual void launch(const float X, const float Y, const float vit_X, const float vit_Y);
+        virtual void draw(sf::RenderWindow& window);
+        virtual void processPhysics(void) {} // Pas de physique, les particules restent sur place
+        virtual void processCollision(void) {} // Pas de collisions pour cette particule, on ne fait rien
+
+    protected:
+        float m_taille;
+        sf::Color m_color;
+
+        sf::Font font;
+        sf::Text texte;
 };
 
 #endif // PARTICULE_HPP_INCLUDED

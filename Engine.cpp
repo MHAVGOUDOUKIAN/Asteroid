@@ -11,11 +11,34 @@
 #include "Engine.hpp"
 #include "CONSTANTES.hpp"
 
-Engine::Engine(): m_window(sf::VideoMode(SIZE_SCREEN_W,SIZE_SCREEN_H), "Ma fenetre", sf::Style::Close), j1(300,300)
+Engine::Engine(): m_window(sf::VideoMode(SIZE_SCREEN_W,SIZE_SCREEN_H), "Ma fenetre", FLAGS), j1(300,300)
 {
     srand(std::chrono::steady_clock::now().time_since_epoch().count());
 
-    TimePerFrame = sf::seconds(1.f/120.f);
+    if(!Buff1.loadFromFile("shoot.wav"))
+    {
+        std::cout << "Fichier son introuvable" << std::endl;
+    }
+    
+    if(!Buff2.loadFromFile("explosion.wav"))
+    {
+        std::cout << "Fichier son introuvable" << std::endl;
+    }
+
+    if(!Buff3.loadFromFile("fusee.ogg"))
+    {
+        std::cout << "Fichier son introuvable" << std::endl;
+    }
+
+    s_shoot.setBuffer(Buff1);
+    s_shoot.setVolume(35);
+    s_explosion.setBuffer(Buff2);
+    s_fusee.setBuffer(Buff3);
+    s_fusee.setVolume(65);
+
+    genPartGlobl.setLifeTimeParticule(1.f);
+
+    TimePerFrame = sf::seconds(1.f/FPS);
     m_window.setVerticalSyncEnabled(false);
     m_window.setTitle("Asteroid");
     m_window.setMouseCursorVisible(true);
@@ -25,18 +48,32 @@ Engine::Engine(): m_window(sf::VideoMode(SIZE_SCREEN_W,SIZE_SCREEN_H), "Ma fenet
     if(!m_fontGame.loadFromFile("AldotheApache.ttf")) {
         std::cout << "Erreur: Impossible de charger la police" << std::endl;
     }
+
+    if(!m_fontScore.loadFromFile("AldotheApache.ttf")) {
+        std::cout << "Erreur: Impossible de charger la police" << std::endl;
+    }
+
     m_textGame.setFont(m_fontGame);
     m_textGame.setCharacterSize(64);
     m_textGame.setFillColor(sf::Color::Red);
     m_textGame.setStyle(sf::Text::Regular);
     m_textGame.setString("GAME OVER");
     m_textGame.setPosition(SIZE_SCREEN_W/2 - m_textGame.getLocalBounds().width/2, SIZE_SCREEN_H/2 - m_textGame.getLocalBounds().height/2);
+
+    m_textScore.setFont(m_fontScore);
+    m_textScore.setCharacterSize(32);
+    m_textScore.setFillColor(sf::Color::Yellow);
+    m_textScore.setStyle(sf::Text::Regular);
+    m_textScore.setString(std::to_string(score));
+    m_textScore.setPosition(10,10);
 }
 
 void Engine::reset()
 {
     j1.pos.x = SIZE_SCREEN_W/2;
     j1.pos.y = SIZE_SCREEN_H/2;
+
+    score = 0;
 
     j1.alive=true;
     j1.vit = sf::Vector2f(0,0);
@@ -129,15 +166,20 @@ void Engine::handleKeyInput(sf::Keyboard::Key key, bool isPressed)
     }
     if(key == sf::Keyboard::Z) {
         this-> Z = isPressed;
-        if(!isPressed) { this->DownPressed=false; }
     }
     if(key == sf::Keyboard::Q) {
         this-> Q = isPressed;
-        if(!isPressed) { this->UpPressed=false; }
     }
     if(key == sf::Keyboard::D) {
         this-> D = isPressed;
-        if(!isPressed) { this->SpacePressed=false; }
+    }
+    if(key == sf::Keyboard::M) {
+        this-> M = isPressed;
+        if(!isPressed) { this->MPressed=false; }
+    }
+    if(key == sf::Keyboard::P) {
+        this-> P = isPressed;
+        if(!isPressed) { this->PPressed=false; }
     }
 }
 
@@ -163,19 +205,61 @@ void Engine::update(sf::Time deltaTime)
         if(MouseR && !MouseRPressed) {}
         if(Left || Q) { j1.rotationL(deltaTime); }
         if(Right || D) { j1.rotationR(deltaTime); }
-        if(Up || Z) { j1.move(deltaTime); }
+        if(Up || Z) { 
+            j1.move(deltaTime);
+            
+            if(s_fusee.getStatus() != sf::SoundSource::Playing) { 
+                s_fusee.play();
+                s_fusee.setLoop(true);
+            }
+        } else { s_fusee.stop(); } 
         if(Down) {  }
         if(Space && !SpacePressed) { 
-            l_balle.push_back(Munition(j1.forme[1].position.x,j1.forme[1].position.y, -j1.angle)); 
+            l_balle.push_back(Munition(j1.forme[1].position.x,j1.forme[1].position.y, -j1.angle));
+            s_shoot.play();
             SpacePressed=true;
+        }
+        if(M  && !MPressed) { 
+            mute = !mute; 
+            MPressed=true;
+
+            if(mute) {
+                s_shoot.setVolume(0);
+                s_explosion.setVolume(0);
+                s_fusee.setVolume(0);
+            } else {
+                s_shoot.setVolume(35);
+                s_explosion.setVolume(100);
+                s_fusee.setVolume(65);
+            }
+        }
+        if(P && !PPressed) { 
+            PPressed=true;
+            sc++;
+            if(sc > 3) { sc = 0; }
         }
     }
     else
     {
+        s_fusee.stop();
         if(Echap) { m_window.close(); }
         if(Space && !SpacePressed) { 
             reset();
             SpacePressed=true;
+        }
+        if(M  && !MPressed) { 
+            mute = !mute; 
+            MPressed=true;
+
+            if(mute) {
+                s_shoot.setVolume(0);
+                s_explosion.setVolume(0);
+                s_fusee.setVolume(0);
+            } else {
+                s_shoot.setVolume(35);
+                s_explosion.setVolume(100);
+                s_fusee.setVolume(65);
+            }
         }
     }
 
@@ -205,6 +289,12 @@ void Engine::update(sf::Time deltaTime)
                 {
                     l_balle[i].dead=true;
                     l_asteroid[j].dead=true;
+                    s_explosion.play();
+
+                    genPartGlobl.setPosition(l_asteroid[j].pos.x, l_asteroid[j].pos.y);
+                    genPartGlobl.add();
+
+                    score += 100;
 
                     if(l_asteroid[j].rayon > 25) {
                         new_Aster.push_back(Obstacle(l_asteroid[j].pos.x + randomf(-20, 20), l_asteroid[j].pos.y + randomf(-20, 20), l_asteroid[j].rayon * 0.6));
@@ -223,6 +313,9 @@ void Engine::update(sf::Time deltaTime)
             i--;
         }
     }
+
+    genPartGlobl.update(deltaTime);
+    m_textScore.setString(std::to_string(score));
 
     for(size_t i=0; i < new_Aster.size(); i++)
     {
@@ -249,10 +342,16 @@ void Engine::update(sf::Time deltaTime)
 void Engine::render(void)
 {
     m_window.clear();
+    
     for(size_t i=0; i < l_asteroid.size(); i++) { l_asteroid[i].draw(m_window); }
     for(size_t i=0; i < l_balle.size(); i++) { l_balle[i].draw(m_window); }
-    if(j1.alive){j1.draw(m_window);}
+    
+    if(sc != 1 && sc != 3) { genPartGlobl.draw(m_window); }
+    if(sc != 2 && sc != 3) { m_window.draw(m_textScore); }
+    
+    if(j1.alive) {j1.draw(m_window);}
     else{m_window.draw(m_textGame);}
+
     m_window.display();
 }
 

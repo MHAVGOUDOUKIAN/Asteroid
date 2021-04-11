@@ -85,3 +85,80 @@ void Particule_Trail::draw(sf::RenderWindow& window)
 }
 
 Particule_Trail::~Particule_Trail() {}
+
+    //////////////////////////////////////////////////////////////
+    ////////////// Particule Score ///////////////////////////////
+    //////////////////////////////////////////////////////////////
+
+Particule_Score::Particule_Score() : Particule(0,0,sf::Quads, 4), m_taille(10) {
+    
+    m_color = sf::Color::Yellow;
+    m_lifeTimeMax = 0.5f;
+    
+    if(!font.loadFromFile("AldotheApache.ttf"))
+    {
+        std::cout << "Impossible de charger la texture des particules" << std::endl;
+    }
+    texte.setFont(font);
+    texte.setCharacterSize(32);
+    texte.setFillColor(sf::Color::Yellow);
+    texte.setStyle(sf::Text::Regular);
+    texte.setString("+100");
+    texte.setPosition(SIZE_SCREEN_W/2 - texte.getLocalBounds().width/2, SIZE_SCREEN_H/2 - texte.getLocalBounds().height/2);
+}
+
+Particule_Score::Particule_Score(const float X, const float Y) : Particule(X,Y,sf::Quads, 4), m_taille(10) {
+    m_color = sf::Color::Yellow;
+    m_lifeTimeMax = 0.5f;
+
+    if(!font.loadFromFile("AldotheApache.ttf"))
+    {
+        std::cout << "Impossible de charger la texture des particules" << std::endl;
+    }
+    texte.setFont(font);
+    texte.setCharacterSize(32);
+    texte.setFillColor(sf::Color::Yellow);
+    texte.setStyle(sf::Text::Regular);
+    texte.setString("+100");
+    texte.setPosition(SIZE_SCREEN_W/2 - texte.getLocalBounds().width/2, SIZE_SCREEN_H/2 - texte.getLocalBounds().height/2);
+}
+
+Particule_Score::Particule_Score(const float X,const float Y, const float dureeVie) : Particule(X,Y,sf::Quads, 4, dureeVie), m_taille(10) {
+    m_color = sf::Color::Yellow;
+
+    if(!font.loadFromFile("AldotheApache.ttf"))
+    {
+        std::cout << "Impossible de charger la texture des particules" << std::endl;
+    }
+    texte.setFont(font);
+    texte.setCharacterSize(28);
+    texte.setFillColor(sf::Color::Yellow);
+    texte.setStyle(sf::Text::Regular);
+    texte.setString("+100");
+    texte.setPosition(m_pos.x - texte.getLocalBounds().width/2, m_pos.y - texte.getLocalBounds().height/2);
+}
+
+void Particule_Score::update(const sf::Time& deltaTime)
+{
+    m_lifeTime += deltaTime.asSeconds();
+
+    if(m_lifeTime>m_lifeTimeMax) { m_isDead = true; }
+
+    processPhysics();
+    processCollision();
+
+    texte.setPosition(texte.getPosition().x + m_vit.x * deltaTime.asSeconds(), texte.getPosition().y + m_vit.y * deltaTime.asSeconds());
+}
+
+void Particule_Score::launch(const float X, const float Y, const float vit_X, const float vit_Y)
+{
+    m_pos = sf::Vector2f(X,Y);
+    m_vit = sf::Vector2f(0,-100);
+}
+
+void Particule_Score::draw(sf::RenderWindow& window)
+{
+    window.draw(texte);
+}
+
+Particule_Score::~Particule_Score() {}  
