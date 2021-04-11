@@ -45,15 +45,13 @@ void Engine::reset()
     l_asteroid.clear();
     l_balle.clear();
 
-    for(int i=0; i<5; i++)
-    {
-        float x,y;
+    m_textGame.setString("GAME OVER");
 
-        x = randomf(100, SIZE_SCREEN_W-100);
-        y = randomf(100, SIZE_SCREEN_H-100);
-
-        l_asteroid.push_back({x, y, randomf(60, 100)});
-    }
+    l_asteroid.push_back({randomf(100, SIZE_SCREEN_W-100), 150, randomf(70, 100)});
+    l_asteroid.push_back({randomf(100, SIZE_SCREEN_W-100), SIZE_SCREEN_W-150, randomf(70, 100)});
+    l_asteroid.push_back({150, randomf(100, SIZE_SCREEN_W-100), randomf(70, 100)});
+    l_asteroid.push_back({SIZE_SCREEN_W-150, randomf(100, SIZE_SCREEN_W-100), randomf(70, 100)});
+    l_asteroid.push_back({randomf(100, SIZE_SCREEN_W-100), 100, randomf(70, 100)});
 }
 
 void Engine::run()
@@ -144,7 +142,7 @@ void Engine::update(sf::Time deltaTime)
     if(j1.alive)
     {
         if(Echap) { m_window.close(); }
-        if(MouseL) { if(!j1.alive){ j1.alive=true; } }
+        if(MouseL) { }
         if(MouseR && !MouseRPressed) {}
         if(Left) { j1.rotationL(deltaTime); }
         if(Right) { j1.rotationR(deltaTime); }
