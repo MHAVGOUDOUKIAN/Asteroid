@@ -10,11 +10,11 @@
  *  lors de sa déclaration grâce à la généricité : ParticuleGenerateur< ma_Particule > mon_Generateur;
  * 
  *  Chaque type de particule est en fait une instance d'une classe qui: 
- *      - dérive d'une méthode virtuelle pure 'Particule'
+ *      - dérive d'une classe virtuelle pure 'Particule'
  *      - décrit les caractéristiques et le comportement des particules
  * 
  *  La construction actuelle du générateur ne permet pas aux particules d'interagir avec l'environnement
- *  extérieur (autres objets, souris, écran, etc..); elles restent fidèles au comportement de base décrit
+ *  extérieur (autres objets, souris, écran, etc..); elles restent fidèles au comportement de base décrithttps://github.com/MHAVGOUDOUKIAN/Asteroid/blob/main/Particule.hpp
  *  dans leur classe d'origine.
  * 
  *  Pour créer une nouvelle classe de particules, il faut au minimum la faire dériver de 'Particule' et redéfinir
