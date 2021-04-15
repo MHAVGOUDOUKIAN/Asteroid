@@ -14,7 +14,7 @@
  *      - décrit les caractéristiques et le comportement des particules
  * 
  *  La construction actuelle du générateur ne permet pas aux particules d'interagir avec l'environnement
- *  extérieur (autres objets, souris, écran, etc..); elles restent fidèles au comportement de base décrithttps://github.com/MHAVGOUDOUKIAN/Asteroid/blob/main/Particule.hpp
+ *  extérieur (autres objets, souris, écran, etc..); elles restent fidèles au comportement de base décrit
  *  dans leur classe d'origine.
  * 
  *  Pour créer une nouvelle classe de particules, il faut au minimum la faire dériver de 'Particule' et redéfinir
