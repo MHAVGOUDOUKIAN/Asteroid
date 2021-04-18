@@ -10,6 +10,7 @@
 #include <iostream>
 #include "Engine.hpp"
 #include "CONSTANTES.hpp"
+#include "inline.h"
 
 Engine::Engine(): m_window(sf::VideoMode(SIZE_SCREEN_W,SIZE_SCREEN_H), "Ma fenetre", FLAGS), j1(300,300)
 {
@@ -41,12 +42,13 @@ Engine::Engine(): m_window(sf::VideoMode(SIZE_SCREEN_W,SIZE_SCREEN_H), "Ma fenet
     s_fusee.setVolume(65);
 
     genPartGlobl.setLifeTimeParticule(1.f);
+    genPartGlobl2.setLifeTimeParticule(0.3f);
 
     TimePerFrame = sf::seconds(1.f/FPS);
     m_window.setVerticalSyncEnabled(false);
     m_window.setTitle("Asteroid");
     m_window.setMouseCursorVisible(true);
-    
+
     reset();
 
     if(!m_fontGame.loadFromFile("AldotheApache.ttf")) {
@@ -142,6 +144,9 @@ void Engine::processEvents(void)
 
             case sf::Event::MouseButtonReleased:
                 handleMouseInput(event.mouseButton.button, false);
+                break;
+
+            default:
                 break;
         }
     }
@@ -278,7 +283,7 @@ void Engine::update(sf::Time deltaTime)
     for(size_t i=0; i < l_asteroid.size(); i++)
     {
         l_asteroid[i].update(deltaTime);
-        if(overlapping(j1.forme,l_asteroid[i].forme) && overlapping(l_asteroid[i].forme,j1.forme))
+        if(overlappingSAT(j1.forme,l_asteroid[i].forme) && overlappingSAT(l_asteroid[i].forme,j1.forme))
         {
             j1.alive=false;
         }
@@ -291,7 +296,7 @@ void Engine::update(sf::Time deltaTime)
         for(size_t j=0; j < l_asteroid.size(); j++)
         {
             if(!l_asteroid[j].dead) {
-                if(overlapping(l_balle[i].forme,l_asteroid[j].forme) && overlapping(l_asteroid[j].forme,l_balle[i].forme))
+                if(overlappingSAT(l_balle[i].forme,l_asteroid[j].forme) && overlappingSAT(l_asteroid[j].forme,l_balle[i].forme))
                 {
                     l_balle[i].dead=true;
                     l_asteroid[j].dead=true;
@@ -299,6 +304,11 @@ void Engine::update(sf::Time deltaTime)
 
                     genPartGlobl.setPosition(l_asteroid[j].pos.x, l_asteroid[j].pos.y);
                     genPartGlobl.add();
+
+                    genPartGlobl2.setPosition(l_asteroid[j].pos.x, l_asteroid[j].pos.y);
+                    
+                    for(int i=0; i<10; i++) genPartGlobl2.add();
+
 
                     score += 100;
 
@@ -321,6 +331,7 @@ void Engine::update(sf::Time deltaTime)
     }
 
     genPartGlobl.update(deltaTime);
+    genPartGlobl2.update(deltaTime);
     m_textScore.setString(std::to_string(score));
 
     for(size_t i=0; i < new_Aster.size(); i++)
@@ -352,6 +363,8 @@ void Engine::render(void)
     for(size_t i=0; i < l_asteroid.size(); i++) { l_asteroid[i].draw(m_window); }
     for(size_t i=0; i < l_balle.size(); i++) { l_balle[i].draw(m_window); }
 
+    genPartGlobl2.draw(m_window);
+
     if(sc != 1 && sc != 3) { genPartGlobl.draw(m_window); }
     if(sc != 2 && sc != 3) { m_window.draw(m_textScore); }
 
@@ -359,32 +372,6 @@ void Engine::render(void)
     else{m_window.draw(m_textGame);}
 
     m_window.display();
-}
-
-bool Engine::overlapping(sf::VertexArray &j1, sf::VertexArray &j2)
-{
-
-    for(size_t i=0; i < j1.getVertexCount(); i++) {
-        int j = (i+1)%j1.getVertexCount();
-        sf::Vector2f axeProjection = sf::Vector2f(-(j1[j].position.y - j1[i].position.y) ,j1[j].position.x - j1[i].position.x);
-
-        float minf1 = 1000000, maxf1 = -1000000;
-        for(size_t e=0; e < j1.getVertexCount(); e++) {
-            float proj = j1[e].position.x * axeProjection.x + j1[e].position.y * axeProjection.y;
-            minf1 = std::min(minf1, proj);
-            maxf1 = std::max(maxf1, proj);
-        }
-
-        float minf2 = 1000000, maxf2 = -1000000;
-        for(size_t e=0; e < j2.getVertexCount(); e++) {
-            float proj = j2[e].position.x * axeProjection.x + j2[e].position.y * axeProjection.y;
-            minf2 = std::min(minf2, proj);
-            maxf2 = std::max(maxf2, proj);
-        }
-
-        if(!(maxf2 > minf1 && maxf1> minf2)) { return false; }
-    }
-    return true;
 }
 
 Engine::~Engine()

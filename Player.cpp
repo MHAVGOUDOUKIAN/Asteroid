@@ -11,9 +11,9 @@
 
 Player::Player(const float x, const float y): angle(0), vitAngulaire(360), acc(250), pos(x,y), vit(0,0), forme(sf::Quads, 5)
 {
-    forme[0].position = sf::Vector2f(pos.x-15,pos.y-5);
+    forme[0].position = sf::Vector2f(pos.x-15,pos.y-15);
     forme[1].position = sf::Vector2f(pos.x+35,pos.y);
-    forme[2].position = sf::Vector2f(pos.x-15,pos.y+5);
+    forme[2].position = sf::Vector2f(pos.x-15,pos.y+15);
     forme[3].position = sf::Vector2f(pos.x-5,pos.y);
     forme[4].position = sf::Vector2f(pos.x-13,pos.y);
 

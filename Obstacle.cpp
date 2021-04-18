@@ -1,10 +1,10 @@
 /** Auteur: Maxime HAVGOUDOUKIAN
- *  
- *  Nom Projet: Asteroid 
- * 
+ *
+ *  Nom Projet: Asteroid
+ *
  *  Date de création: 09/04/2021
  *  Dernière modification: 12/04/2021
- *  
+ *
 **/
 
 #include "Obstacle.hpp"
@@ -69,7 +69,7 @@ Obstacle::Obstacle(const float x, const float y, const float radius): dir(1,0), 
 
 void Obstacle::update(sf::Time deltaTime)
 {
-    if(!dead) {    
+    if(!dead) {
         pos += dir * vit * deltaTime.asSeconds();
         angle += vitAngle * PI/180 * deltaTime.asSeconds();
 
@@ -79,7 +79,7 @@ void Obstacle::update(sf::Time deltaTime)
         if(pos.y < 0 - rayonMax) {pos.y = SIZE_SCREEN_H + rayonMax;}
         if(pos.y > SIZE_SCREEN_H + rayonMax) {pos.y = 1 - rayonMax;}
     }
-    render();
+    //render();
 }
 
 void Obstacle::render()

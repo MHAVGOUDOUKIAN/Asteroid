@@ -1,12 +1,12 @@
 /** Auteur: Maxime HAVGOUDOUKIAN
- *  
- *  Nom Projet: Asteroid 
- * 
+ *
+ *  Nom Projet: Asteroid
+ *
  *  Date de création: 09/04/2021
  *  Dernière modification: 12/04/2021
- * 
+ *
  *  Contient la boucle principale du jeu
- *  
+ *
 **/
 
 #ifndef ENGINE_HPP_INCLUDED
@@ -34,13 +34,11 @@ class Engine
         void handleMouseInput(sf::Mouse::Button mouse, bool isPressed);
         void render();
 
-        bool overlapping(sf::VertexArray &j1, sf::VertexArray &j2);
-
     public: // Normalement privé
         bool MouseL=false, MouseR=false, Echap=false, MouseRPressed = false;
         bool Left=false, Right=false, Up=false, Space=false, Down=false, Z=false, Q=false, D=false, M=false, P=false;
         bool SpacePressed=false, UpPressed=false, DownPressed=false, LeftPressed=false, RightPressed=false, MPressed=false, PPressed=false;
-        
+
         sf::RenderWindow m_window;
         sf::Time TimePerFrame;
         Player j1;
@@ -48,14 +46,15 @@ class Engine
         int score=0;
         std::vector<Obstacle> l_asteroid;
         std::vector<Munition> l_balle;
-        
+
         sf::Font m_fontGame;
         sf::Text m_textGame;
         sf::Font m_fontScore;
         sf::Text m_textScore;
 
         ParticuleGenerator<Particule_Score> genPartGlobl;
-        
+        ParticuleGenerator<Particule_Dot> genPartGlobl2;
+
         sf::SoundBuffer Buff1;
         sf::SoundBuffer Buff2;
         sf::SoundBuffer Buff3;

@@ -6,7 +6,7 @@
  *  Dernière modification: 12/04/2021
  *  
  *  Ma première tentative pour intégrer le tir pour le personnage était de considérer
- *  les projectiles commes des obstacles mais trop compliqué d'adapter la classe 'Obstacle'.
+ *  les projectiles commes des obstacles.
  * 
  *  J'ai finalement implémenté une classe simple dédiée aux projectiles.
  *  

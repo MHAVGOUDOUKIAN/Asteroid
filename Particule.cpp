@@ -171,3 +171,60 @@ void Particule_Score::draw(sf::RenderWindow& window)
 }
 
 Particule_Score::~Particule_Score() {}  
+
+    //////////////////////////////////////////////////////////////
+    ////////////// Particule Dot ////////////////////////////////
+    //////////////////////////////////////////////////////////////
+
+Particule_Dot::Particule_Dot() : Particule(0,0,sf::Quads, 4), m_taille(2) {
+    m_color = sf::Color::White;
+    m_lifeTimeMax = 0.5f;
+}
+
+Particule_Dot::Particule_Dot(const float X, const float Y) : Particule(X,Y,sf::Quads, 4), m_taille(2) {
+    m_color = sf::Color::White;
+    m_lifeTimeMax = 0.5f;
+}
+
+Particule_Dot::Particule_Dot(const float X,const float Y, const float dureeVie) : Particule(X,Y,sf::Quads, 4, dureeVie), m_taille(2) {
+    m_color = sf::Color::White;
+}
+
+void Particule_Dot::update(const sf::Time& deltaTime)
+{
+    m_lifeTime += deltaTime.asSeconds();
+
+    if(m_lifeTime>m_lifeTimeMax || m_pos.x < 0 || m_pos.x > 1920 || m_pos.y < 0 || m_pos.y > 1080) { m_isDead = true; }
+
+    processPhysics();
+    processCollision();
+
+    m_forme[0].position = sf::Vector2f(m_pos.x - m_taille/2, m_pos.y - m_taille/2);
+    m_forme[1].position = sf::Vector2f(m_pos.x + m_taille/2, m_pos.y - m_taille/2);
+    m_forme[2].position = sf::Vector2f(m_pos.x + m_taille/2, m_pos.y + m_taille/2);
+    m_forme[3].position = sf::Vector2f(m_pos.x - m_taille/2, m_pos.y + m_taille/2);
+
+    m_forme[0].color = m_color;
+    m_forme[1].color = m_color;
+    m_forme[2].color = m_color;
+    m_forme[3].color = m_color;
+}
+
+void Particule_Dot::processPhysics(void) // Problème de la balle lancée en (x,y) à la vitesse V(v_x,v_y)
+{
+    m_pos.x += m_vit.x;
+    m_pos.y += m_vit.y;
+}
+
+void Particule_Dot::launch(const float X, const float Y, const float vit_X, const float vit_Y)
+{
+    m_pos = sf::Vector2f(X,Y);
+    m_vit = sf::Vector2f(randomf(-5.f,5.f),randomf(-5.f,5.f));
+}
+
+void Particule_Dot::draw(sf::RenderWindow& window)
+{
+    window.draw(m_forme);
+}
+
+Particule_Dot::~Particule_Dot() {}

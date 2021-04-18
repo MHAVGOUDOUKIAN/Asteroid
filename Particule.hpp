@@ -110,4 +110,27 @@ class Particule_Score : public Particule
         sf::Text texte;
 };
 
+   //////////////////////////////////////////////////////////////
+    ////////////// Particule Dot ////////////////////////////////
+    //////////////////////////////////////////////////////////////
+
+class Particule_Dot : public Particule
+{
+    public:
+        Particule_Dot();
+        Particule_Dot(const float X,const float Y);
+        Particule_Dot(const float X,const float Y, const float dureeVie);
+        virtual ~Particule_Dot();
+
+        virtual void update(const sf::Time& deltaTime);
+        virtual void launch(const float X, const float Y, const float vit_X, const float vit_Y);
+        virtual void draw(sf::RenderWindow& window);
+        virtual void processPhysics(void);
+        virtual void processCollision(void) {} // Pas de collisions pour cette particule
+
+    protected:
+        float m_taille;
+        sf::Color m_color;
+};
+
 #endif // PARTICULE_HPP_INCLUDED
