@@ -10,7 +10,7 @@
  *  lors de sa déclaration grâce à la généricité : ParticuleGenerateur< ma_Particule > mon_Generateur;
  * 
  *  Chaque type de particule est en fait une instance d'une classe qui: 
- *      - dérive d'une méthode virtuelle pure 'Particule'
+ *      - dérive d'une classe virtuelle pure 'Particule'
  *      - décrit les caractéristiques et le comportement des particules
  * 
  *  La construction actuelle du générateur ne permet pas aux particules d'interagir avec l'environnement
@@ -110,6 +110,7 @@ class Particule_Score : public Particule
         sf::Text texte;
 };
 
+<<<<<<< HEAD
    //////////////////////////////////////////////////////////////
     ////////////// Particule Dot ////////////////////////////////
     //////////////////////////////////////////////////////////////
@@ -134,3 +135,6 @@ class Particule_Dot : public Particule
 };
 
 #endif // PARTICULE_HPP_INCLUDED
+=======
+#endif // PARTICULE_HPP_INCLUDED
+>>>>>>> 32015273d434c1877cee2ef46d957dde6844e940

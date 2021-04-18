@@ -6,7 +6,7 @@
  *  Dernière modification: 12/04/2021
  *  
  *  Les obstacles ont une vitesse de translation et une vitesse de rotation fixe qui dépendent de leur rayon;
- *  Plus le rayon est important, moins les vitesses le sont; 
+ *  Plus leur rayon est important, moins leurs vitesses le sont; 
  * 
 **/
 
