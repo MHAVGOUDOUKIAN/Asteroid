@@ -10,4 +10,8 @@ Jeu des astéroïdes codé en c++
     M: Activer/Désactiver les effets sonores
     P: Changer l'affichage des scores
 
+## Divers
+    Algorithme pour la détection des collisions entre des formes convexes: Algorithme SAT ( Separating Axis Theorem)
+    Système de particules: https://github.com/MHAVGOUDOUKIAN/Gen_ParticuleV2
+
 Auteur: Maxime HAVGOUDOUKIAN
