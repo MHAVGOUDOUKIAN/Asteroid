@@ -14,4 +14,5 @@ Jeu des astéroïdes codé en c++
    Algorithme de détection des collisions entre des formes convexes: Algorithme SAT ( Separating Axis Theorem)
    Système de particules: https://github.com/MHAVGOUDOUKIAN/Gen_ParticuleV2
 
-## Auteur: Maxime HAVGOUDOUKIAN
+## Auteur
+    Maxime HAVGOUDOUKIAN
