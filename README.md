@@ -16,6 +16,6 @@ Jeu des astéroïdes codé en c++
 | **P** | Changer l'affichage des scores |
 
 ## Divers
-- Algorithme de détection des collisions : Separating Axis Theorem
+- Algorithme de détection des collisions - Separating Axis Theorem ([Voir l'article Wikipedia](https://en.wikipedia.org/wiki/Hyperplane_separation_theorem))
 
 - Système de particules -  [Gen_PariculeV2](https://github.com/MHAVGOUDOUKIAN/Gen_ParticuleV2)
