@@ -3,7 +3,6 @@
 Le jeu des astéroïdes codé en c++
 
 ![image](https://user-images.githubusercontent.com/61056605/116701306-0e18ed00-a9c8-11eb-8c7a-852e5bc0f3d5.png)
-> Image du jeu
 
 ## Commandes
 
