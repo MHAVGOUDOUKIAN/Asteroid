@@ -14,6 +14,7 @@ Le jeu des astéroïdes codé en c++ avec la librairie SFML
 | **Espace** | Tirer |
 | **M** | Activer/Désactiver les effets sonores |
 | **P** | Changer l'affichage des scores |
+|**Echap**| Quitter le programme|
 
 ## Divers
 - Algorithme de détection des collisions - Separating Axis Theorem ([Voir l'article Wikipedia](https://fr.wikipedia.org/wiki/S%C3%A9paration_des_convexes))
