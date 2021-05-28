@@ -1,4 +1,4 @@
-# Asteroid
+# _Asteroid_
 
 Le jeu des astéroïdes codé en c++ avec la librairie SFML
 
