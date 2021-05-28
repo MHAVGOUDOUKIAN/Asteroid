@@ -23,7 +23,7 @@ Le jeu des astéroïdes codé en c++ avec la librairie SFML
 ### Linux
 Ouvrez un terminal, placez vous dans le dossier **Asteroid** puis tapez la commande suivante:
  ```sh 
- bin/asteroid **
+ bin/asteroid 
  ```
 
 ## Divers
