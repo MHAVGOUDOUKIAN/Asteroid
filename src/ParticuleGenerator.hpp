@@ -65,6 +65,7 @@ class ParticuleGenerator
         float particulePerSecond; // Pas de limitation pour générer des particules mais attention aux performances
         float timeLastParticuleAdded; /* Utile uniquement pour emit() // Le nombre de particule max que peut fournir un générateur par seconde dépend des performances du système // 0 => Démarrage du générateur retardé de 'particulePerSecond', toujours initialiser à 1 pour un démarrage direct mais augmente particulePerSecond par 1 */
         float lifeTimeParticule;
+};
 
 template <typename type>
 ParticuleGenerator<type>::ParticuleGenerator() : pos(sf::Vector2f(0,0)), working(false), EnableDuration(false), duration(2.f),

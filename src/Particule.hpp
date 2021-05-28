@@ -110,7 +110,6 @@ class Particule_Score : public Particule
         sf::Text texte;
 };
 
-<<<<<<< HEAD
    //////////////////////////////////////////////////////////////
     ////////////// Particule Dot ////////////////////////////////
     //////////////////////////////////////////////////////////////
@@ -135,6 +134,3 @@ class Particule_Dot : public Particule
 };
 
 #endif // PARTICULE_HPP_INCLUDED
-=======
-#endif // PARTICULE_HPP_INCLUDED
->>>>>>> 32015273d434c1877cee2ef46d957dde6844e940

@@ -135,7 +135,7 @@ Particule_Score::Particule_Score(const float X, const float Y) : Particule(X,Y,s
 Particule_Score::Particule_Score(const float X,const float Y, const float dureeVie) : Particule(X,Y,sf::Quads, 4, dureeVie), m_taille(10) {
     m_color = sf::Color::Yellow;
 
-    if(!font.loadFromFile("AldotheApache.ttf"))
+    if(!font.loadFromFile("res/AldotheApache.ttf"))
     {
         std::cout << "Impossible de charger la texture des particules" << std::endl;
     }

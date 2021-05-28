@@ -9,8 +9,6 @@
 
 #include <iostream>
 #include "Engine.hpp"
-#include "CONSTANTES.hpp"
-#include "inline.h"
 
 Engine::Engine(): m_window(sf::VideoMode(SIZE_SCREEN_W,SIZE_SCREEN_H), "Ma fenetre", FLAGS), j1(300,300)
 {
@@ -20,17 +18,17 @@ Engine::Engine(): m_window(sf::VideoMode(SIZE_SCREEN_W,SIZE_SCREEN_H), "Ma fenet
 
     srand(std::chrono::steady_clock::now().time_since_epoch().count());
 
-    if(!Buff1.loadFromFile("shoot.wav"))
+    if(!Buff1.loadFromFile("res/shoot.wav"))
     {
         std::cout << "Fichier son introuvable" << std::endl;
     }
 
-    if(!Buff2.loadFromFile("explosion.wav"))
+    if(!Buff2.loadFromFile("res/explosion.wav"))
     {
         std::cout << "Fichier son introuvable" << std::endl;
     }
 
-    if(!Buff3.loadFromFile("fusee.ogg"))
+    if(!Buff3.loadFromFile("res/fusee.ogg"))
     {
         std::cout << "Fichier son introuvable" << std::endl;
     }
@@ -51,11 +49,11 @@ Engine::Engine(): m_window(sf::VideoMode(SIZE_SCREEN_W,SIZE_SCREEN_H), "Ma fenet
 
     reset();
 
-    if(!m_fontGame.loadFromFile("AldotheApache.ttf")) {
+    if(!m_fontGame.loadFromFile("res/AldotheApache.ttf")) {
         std::cout << "Erreur: Impossible de charger la police" << std::endl;
     }
 
-    if(!m_fontScore.loadFromFile("AldotheApache.ttf")) {
+    if(!m_fontScore.loadFromFile("res/AldotheApache.ttf")) {
         std::cout << "Erreur: Impossible de charger la police" << std::endl;
     }
 
