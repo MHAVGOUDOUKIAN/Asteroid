@@ -18,11 +18,13 @@ Le jeu des astéroïdes codé en c++ avec la librairie SFML
 
 ## Lancement
 ### Windows
-> Lancer directement l'exécutable 'asteroid.exe' dans le dossier "bin/Release"
+> **Lancez directement l'exécutable 'asteroid.exe' dans le dossier "bin/Release"**
 
 ### Linux
-> Ouvrez un terminal, placez vous dans le dossier "Asteroid" puis tapez la commande suivante:
->  ```sh bin/asteroid ```
+> **Ouvrez un terminal, placez vous dans le dossier "Asteroid" puis tapez la commande suivante:
+>  ```sh 
+>  bin/asteroid **
+>  ```
 
 ## Divers
 - Algorithme de détection des collisions - Separating Axis Theorem ([Voir l'article Wikipedia](https://fr.wikipedia.org/wiki/S%C3%A9paration_des_convexes))
