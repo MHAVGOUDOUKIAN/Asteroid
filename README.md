@@ -18,10 +18,10 @@ Le jeu des astéroïdes codé en c++ avec la librairie SFML
 
 ## Lancement
 ### Windows
- Lancez directement l'exécutable 'asteroid.exe' dans le dossier "bin/Release"
+ Lancez directement l'exécutable **'asteroid.exe'** dans le dossier **bin/Release**
 
 ### Linux
-Ouvrez un terminal, placez vous dans le dossier "Asteroid" puis tapez la commande suivante:
+Ouvrez un terminal, placez vous dans le dossier **Asteroid** puis tapez la commande suivante:
  ```sh 
  bin/asteroid **
  ```
