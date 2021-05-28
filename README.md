@@ -4,7 +4,7 @@ Le jeu des astéroïdes codé en c++ avec la librairie SFML
 
 ![image](https://user-images.githubusercontent.com/61056605/116701306-0e18ed00-a9c8-11eb-8c7a-852e5bc0f3d5.png)
 
-## Commandes
+## COMMANDES
 
 | Touche | Action |
 | ------ | ------ |
@@ -16,7 +16,7 @@ Le jeu des astéroïdes codé en c++ avec la librairie SFML
 | **P** | Changer l'affichage des scores |
 |**Echap**| Quitter le programme|
 
-## Lancement
+## LANCEMENT
 ### Windows
  Lancez directement l'exécutable **'asteroid.exe'** dans le dossier **bin/Release**
 
@@ -26,7 +26,7 @@ Ouvrez un terminal, placez vous dans le dossier **Asteroid** puis tapez la comma
  bin/asteroid 
  ```
 
-## Divers
+## DIVERS
 - Algorithme de détection des collisions - Separating Axis Theorem ([Voir l'article Wikipedia](https://fr.wikipedia.org/wiki/S%C3%A9paration_des_convexes))
 
 - Système de particules -  [Gen_PariculeV2](https://github.com/MHAVGOUDOUKIAN/Gen_ParticuleV2)
