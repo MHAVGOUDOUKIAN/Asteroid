@@ -9,8 +9,8 @@ Le jeu des astéroïdes codé en c++ avec la librairie SFML
 | Touche | Action |
 | ------ | ------ |
 | **Z / Haut** | Accélérer |
-| **Q / Gauche** | Tourner à gauche |
-| **D / Droite** | Tourner à droite |
+| **Q / Gauche** | Pivoter à gauche |
+| **D / Droite** | Pivoter à droite |
 | **Espace** | Tirer |
 | **M** | Activer/Désactiver les effets sonores |
 | **P** | Changer l'affichage des scores |
