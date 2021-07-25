@@ -30,12 +30,12 @@ class Engine
         ~Engine();
 
         void run();
-        void reset();
+        void reset(); // Relance un partie
         void update(sf::Time deltaTime);
         void processEvents();
         void handleKeyInput(sf::Keyboard::Key key, bool isPressed);
         void handleMouseInput(sf::Mouse::Button mouse, bool isPressed);
-        void render();
+        void render(); // Partie rendu de l'application
 
     public: // Normalement privé
         bool MouseL=false, MouseR=false, Echap=false, MouseRPressed = false;
